@@ -1,4 +1,7 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import reduxLogger from "redux-logger";
+
+const logger = reduxLogger.createLogger();
 
 //Initial state
 const initState = {
@@ -46,10 +49,10 @@ const rootReducer = combineReducers({
 });
 
 // Create store
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 // Subscribe to changes
-store.subscribe(() => console.log(store.getState()));
+store.subscribe(() => {});
 
 console.log(store.getState());
 
